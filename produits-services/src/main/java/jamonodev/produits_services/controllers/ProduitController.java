@@ -23,6 +23,22 @@ public class ProduitController {
     private static final String STATUS = "responseCode";
     private ProduitService produitService;
 
+
+    @GetMapping("/site/{siteID}/produits")
+    public ResponseEntity<?> getAllProduitsBySites(@PathVariable String siteID) {
+        Map<String, Object> output = new HashMap<>();
+        try {
+            output.put(RESULT, produitService.getAllProduitsBySites(siteID));
+            output.put(MESSAGE, "Liste des produits du site récupérée avec succès");
+            output.put(STATUS, 200);
+            return ResponseEntity.ok(output);
+        } catch (Exception e) {
+            output.put(MESSAGE, e.getMessage());
+            output.put(STATUS, 500);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(output);
+        }
+    }
+
     @GetMapping("/{produitID}")
     public ResponseEntity<?> getProduitById(@PathVariable("produitID") String produitID){
         Map<String, Object> output = new HashMap<>();

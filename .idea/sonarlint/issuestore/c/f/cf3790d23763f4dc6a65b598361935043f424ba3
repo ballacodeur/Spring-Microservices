@@ -1,11 +1,19 @@
 
+j
+java:S11925"HDefine a constant instead of duplicating this literal "MESSAGE" 4 times.(Èåßÿÿÿÿÿ8Äø¤2
+i
+java:S11926"GDefine a constant instead of duplicating this literal "STATUS" 4 times.(‰…Äíùÿÿÿÿ8Åø¤2
 H
-java:S1452"&Remove usage of generic wildcard type.(©öõùÿÿÿÿ8 ‘ß2
-H
-java:S1452*"&Remove usage of generic wildcard type.(®ïòÑûÿÿÿÿ8©‘ß2
-B
-java:S1452:"&Remove usage of generic wildcard type.(Š«Â.8°‘ß2
-H
-java:S1452I"&Remove usage of generic wildcard type.(õ¸ Åşÿÿÿÿ8·‘ß2
+java:S1452"&Remove usage of generic wildcard type.(©öõùÿÿÿÿ8ÿûÑ£2
 C
-java:S1452["&Remove usage of generic wildcard type.(ğ¸¥±8À‘ß2
+java:S1452-"&Remove usage of generic wildcard type.(‹ıÜ†8“üÑ£2
+C
+java:S1452@"&Remove usage of generic wildcard type.(ï¦¤ç8£üÑ£2
+H
+java:S1452S"&Remove usage of generic wildcard type.(®ïòÑûÿÿÿÿ8´üÑ£2
+B
+java:S1452c"&Remove usage of generic wildcard type.(Š«Â.8ÅüÑ£2
+H
+java:S1452r"&Remove usage of generic wildcard type.(õ¸ Åşÿÿÿÿ8âüÑ£2
+D
+java:S1452„"&Remove usage of generic wildcard type.(ğ¸¥±8ú“Ÿ¤2

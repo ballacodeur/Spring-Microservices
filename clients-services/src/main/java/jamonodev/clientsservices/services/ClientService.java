@@ -25,6 +25,16 @@ public class ClientService {
         this.clientMapper = clientMapper;
     }
 
+    public List<ClientDto> getAllClientsBySites( String siteID) {
+        try {
+            return getAllClients().stream()
+                    .filter(c -> c.getSiteID().equalsIgnoreCase(siteID)).toList();
+        } catch (Exception e) {
+            log.error("Une erreur est survenue lors de la récupération des clients", e);
+            throw new InternalServerErrorException("Une erreur est survenue lors de la récupération des clients");
+        }
+    }
+
     public List<ClientDto> getAllClients() {
         try {
             return clientRepository.findAll().stream()

@@ -25,6 +25,15 @@ public class ProduitService {
         this.produitMapper = produitMapper;
     }
 
+    public List<ProduitDto> getAllProduitsBySites( String siteID) {
+        try {
+            return getAllProduits().stream()
+                    .filter(c -> c.getSiteID().equalsIgnoreCase(siteID)).toList();
+        } catch (Exception e) {
+            log.error("Une erreur est survenue lors de la récupération des produits", e);
+            throw new InternalServerErrorException("Une erreur est survenue lors de la récupération des produits");
+        }
+    }
     public List<ProduitDto> getAllProduits() {
         try {
             return produitRepository.findAll().stream()

@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import jakarta.ws.rs.NotFoundException;
 import jamonodev.sitesservices.dto.SiteDto;
 import jamonodev.sitesservices.exception.EntityNotFoundException;
+import jamonodev.sitesservices.services.ClientApiService;
 import jamonodev.sitesservices.services.SitesServices;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,7 @@ public class SiteController {
     private static final String MESSAGE = "message";
     private static final String STATUS = "responseCode";
     private final SitesServices siteService;
+    private final ClientApiService clientApiService;
 
     @GetMapping("/{siteID}")
     public ResponseEntity<?> getSiteById(@PathVariable("siteID") String siteID) {
@@ -35,6 +37,45 @@ public class SiteController {
             output.put(MESSAGE, e.getMessage());
             output.put(STATUS, 404);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(output);
+        }
+    }
+
+
+    @GetMapping("/site/{siteID}/clients")
+    public ResponseEntity<?> getAllClientsBySites(@PathVariable String siteID) {
+        Map<String, Object> output = new HashMap<>();
+        try {
+            String siteName = siteService.getSiteById(UUID.fromString(siteID)).getNom();
+            output.put("RESULT", Map.of(
+                    "siteName", siteName,
+                    "clients", clientApiService.getAllClientsBySite(siteID)
+            ));
+            output.put("MESSAGE", "Liste des clients du site récupérés avec succès");
+            output.put("STATUS", 200);
+            return ResponseEntity.ok(output);
+        } catch (Exception e) {
+            output.put("MESSAGE", e.getMessage());
+            output.put("STATUS", 500);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(output);
+        }
+    }
+
+    @GetMapping("/site/{siteID}/produits")
+    public ResponseEntity<?> getAllProduitsBySites(@PathVariable String siteID) {
+        Map<String, Object> output = new HashMap<>();
+        try {
+            String siteName = siteService.getSiteById(UUID.fromString(siteID)).getNom();
+            output.put("RESULT", Map.of(
+                    "siteName", siteName,
+                    "produits", clientApiService.getAllProduitsBySite(siteID)
+            ));
+            output.put("MESSAGE", "Liste des produits du site récupérés avec succès");
+            output.put("STATUS", 200);
+            return ResponseEntity.ok(output);
+        } catch (Exception e) {
+            output.put("MESSAGE", e.getMessage());
+            output.put("STATUS", 500);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(output);
         }
     }
 

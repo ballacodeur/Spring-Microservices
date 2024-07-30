@@ -23,6 +23,22 @@ public class ClientController {
     private static final String STATUS = "responseCode";
     private final ClientService clientService;
 
+
+    @GetMapping("/site/{siteID}/clients")
+    public ResponseEntity<?> getAllClientsBySite(@PathVariable String siteID) {
+        Map<String, Object> output = new HashMap<>();
+        try {
+            output.put(RESULT, clientService.getAllClientsBySites(siteID));
+            output.put(MESSAGE, "Liste des clients du site récupérée avec succès");
+            output.put(STATUS, 200);
+            return ResponseEntity.ok(output);
+        } catch (Exception e) {
+            output.put(MESSAGE, e.getMessage());
+            output.put(STATUS, 500);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(output);
+        }
+    }
+
     @GetMapping("/{clientID}")
     public ResponseEntity<?> getClientById(@PathVariable("clientID") String clientID) {
         Map<String, Object> output = new HashMap<>();

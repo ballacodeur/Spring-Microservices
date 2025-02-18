@@ -1,6 +1,4 @@
 package jamonodev.sitesservices.services;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -43,7 +41,6 @@ public class ClientApiService {
         if (dataNode.isArray()) {
             return objectMapper.readValue(dataNode.traverse(), objectMapper.getTypeFactory().constructCollectionType(List.class, ClientResponse.class));
         } else {
-            // Handle the case where dataNode is not an array (optional)
             return Collections.singletonList(objectMapper.treeToValue(dataNode, ClientResponse.class));
         }
     }
@@ -62,7 +59,6 @@ public class ClientApiService {
         if (dataNode.isArray()) {
             return objectMapper.readValue(dataNode.traverse(), objectMapper.getTypeFactory().constructCollectionType(List.class, ProduitResponse.class));
         } else {
-            // Handle the case where dataNode is not an array (optional)
             return Collections.singletonList(objectMapper.treeToValue(dataNode, ProduitResponse.class));
         }
     }
